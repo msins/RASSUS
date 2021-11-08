@@ -1,0 +1,2 @@
+- There is a main method in SensorServer class which should be run to add sensor to network.
+- In IntelliJ you should enable 'Allow multiple instances' in configuration and just press run to spawn new senosr.

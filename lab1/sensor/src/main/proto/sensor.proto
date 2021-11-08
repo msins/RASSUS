@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "edu.fer.rassus.sensor";
+package edu.fer.rassus.sensor;
+
+service SensorService {
+  rpc RequestReading (SensorRequest) returns (ReadingResponse) {}
+}
+
+message SensorRequest {
+  double latitude = 1;
+  double longitude = 2;
+  string ip = 3;
+  int32 port = 4;
+}
+
+message ReadingResponse {
+  double temperature = 1;
+  double humidity = 2;
+  double pressure = 3;
+  double co = 4;
+  double so2 = 5;
+  double no2 = 6;
+}
