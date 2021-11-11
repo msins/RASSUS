@@ -77,7 +77,7 @@ public class SensorServer {
 
           if (nearestSensor == null) {
             return Observable.error(
-                new IllegalStateException("Can't find other sensor. Add more sensors to the network."));
+                new IllegalStateException("Can't find any sensors. Add more sensors to the network."));
           }
 
           logger.info("Nearest sensor is: " + nearestSensor);
