@@ -1,9 +1,9 @@
 package edu.fer.rassus.server.service
 
-import edu.fer.rassus.server.AddSensorRequest
+import edu.fer.rassus.server.dto.AddSensorRequest
+import edu.fer.rassus.server.dto.toEntity
 import edu.fer.rassus.server.model.Sensor
 import edu.fer.rassus.server.repository.SensorRepository
-import edu.fer.rassus.server.toEntity
 import io.reactivex.Single
 import org.springframework.stereotype.Service
 import javax.transaction.Transactional

@@ -1,6 +1,6 @@
 package edu.fer.rassus.server.controller
 
-import edu.fer.rassus.server.AddSensorRequest
+import edu.fer.rassus.server.dto.AddSensorRequest
 import edu.fer.rassus.server.dto.SensorWithoutIdResponse
 import edu.fer.rassus.server.model.Sensor
 import edu.fer.rassus.server.model.WeatherReading
@@ -34,9 +34,11 @@ class SensorController(
 
     @DeleteMapping("{sensorId}")
     fun unregisterSensor(@PathVariable sensorId: Int): Single<ResponseEntity<Unit>> {
-        println("Unregister sensor: $sensorId")
         return sensorService.deleteSensor(sensorId)
-            .map { if (it) ResponseEntity.ok().build() else ResponseEntity.badRequest().build() }
+            .map { isDeleted ->
+                if (isDeleted) ResponseEntity.ok().build()
+                else ResponseEntity.badRequest().build()
+            }
     }
 
     @PostMapping("{sensorId}")
@@ -53,9 +55,9 @@ class SensorController(
             }
     }
 
-    @GetMapping("nearest/{id}")
-    fun getNearestNeighbour(@PathVariable id: Int): Single<ResponseEntity<SensorWithoutIdResponse>> {
-        return sensorService.findClosestTo(id)
+    @GetMapping("nearest/{sensorId}")
+    fun getNearestNeighbour(@PathVariable sensorId: Int): Single<ResponseEntity<SensorWithoutIdResponse>> {
+        return sensorService.findClosestTo(sensorId)
             .map { ResponseEntity.ok(SensorWithoutIdResponse.from(it)) }
     }
 

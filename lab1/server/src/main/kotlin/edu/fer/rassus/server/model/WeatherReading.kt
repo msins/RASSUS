@@ -33,7 +33,7 @@ class WeatherReading(
     val id: Int? = null
 ) {
     override fun toString(): String {
-        return "WeatherReading( " +
+        return "WeatherReading(" +
                 "temperature = $temperature," +
                 "pressure = $pressure," +
                 "humidity = $humidity," +

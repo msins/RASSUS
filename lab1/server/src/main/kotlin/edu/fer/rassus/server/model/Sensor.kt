@@ -32,8 +32,8 @@ class Sensor(
     val id: Int? = null
 ) {
     init {
-        require(latitude in -90.0..90.0) { " Latitude has to be in [-90, 90] range." }
-        require(longitude in -90.0..90.0) { " Longitude has to be in [-90, 90] range." }
+        require(latitude in -90.0..90.0) { "Latitude has to be in [-90, 90] range." }
+        require(longitude in -90.0..90.0) { "Longitude has to be in [-90, 90] range." }
     }
 
     fun addWeatherReading(reading: WeatherReading) {
