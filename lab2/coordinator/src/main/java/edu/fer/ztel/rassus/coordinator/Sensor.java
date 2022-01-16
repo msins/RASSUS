@@ -1,4 +1,4 @@
-package edu.fer.ztel.rassus.coordinator.sensor;
+package edu.fer.ztel.rassus.coordinator;
 
 public record Sensor(int id, String address, int port) {
 

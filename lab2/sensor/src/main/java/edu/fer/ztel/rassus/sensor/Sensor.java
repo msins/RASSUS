@@ -1,4 +1,4 @@
-package edu.fer.ztel.rassus.sensor.sensor;
+package edu.fer.ztel.rassus.sensor;
 
 import java.util.StringJoiner;
 
