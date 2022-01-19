@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component
 import java.io.BufferedReader
 import java.io.FileNotFoundException
 import java.io.InputStreamReader
-import kotlin.streams.toList
+import java.util.stream.Collectors
 
 @Component
 class TemperatureGenerator {
@@ -31,6 +31,9 @@ class TemperatureGenerator {
         }
 
         val reader = BufferedReader(InputStreamReader(readingsInputStream))
-        readings = reader.lines().skip(1).map { TemperatureMapper.csvToLocal(it) }.toList()
+        readings = reader.lines()
+            .skip(1)
+            .map(TemperatureMapper::csvToLocal)
+            .collect(Collectors.toList())
     }
 }

@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: aggregator-microservice
+  cloud:
+    config:
+      uri: http://localhost:8888
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
+
+server:
+  port: 8083

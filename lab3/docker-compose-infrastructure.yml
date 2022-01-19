@@ -1,0 +1,32 @@
+version: '3.5'
+
+services:
+  eureka-server:
+    hostname: eureka-server
+    build:
+      context: ./microservices/eureka-server
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+    networks:
+      - microservices
+
+
+  config-server:
+    hostname: config-server-microservice
+    environment:
+      - SPRING_PROFILES_ACTIVE=native
+    build:
+      context: ./microservices/config-server-microservice
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./config:/config
+    networks:
+      - microservices
+
+
+networks:
+  microservices:
+    external: true

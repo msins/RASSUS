@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.http.ResponseEntity
 import io.reactivex.rxjava3.core.Single
+import org.springframework.http.MediaType
 
 @RestController
 @RequestMapping

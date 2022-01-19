@@ -1,0 +1,52 @@
+version: "3.5"
+
+services:
+  temperature-microservice:
+    hostname: temperature-microservice
+    build:
+      context: ./microservices/temperature-microservice
+      dockerfile: Dockerfile
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka-server:8761/eureka
+    ports:
+      - "8081:8081"
+    networks:
+      - microservices
+    external_links:
+      - eureka-server
+
+  humidity-microservice:
+    hostname: humidity-microservice
+    build:
+      context: ./microservices/humidity-microservice
+      dockerfile: Dockerfile
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka-server:8761/eureka
+    ports:
+      - "8082:8082"
+    networks:
+      - microservices
+    external_links:
+      - eureka-server
+
+  aggregator-microservice:
+    hostname: aggregator-microservice
+    build:
+      context: ./microservices/aggregator-microservice
+      dockerfile: Dockerfile
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka-server:8761/eureka
+      - spring.cloud.config.uri=http://config-server-microservice:8888
+    ports:
+      - "8083:8083"
+    depends_on:
+      - temperature-microservice
+      - humidity-microservice
+    networks:
+      - microservices
+    external_links:
+      - eureka-server
+
+networks:
+  microservices:
+    external: true
